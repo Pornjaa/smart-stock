@@ -1,6 +1,5 @@
-
-import { Category, Product, StockEntry, DebtEntry } from '../types';
-import { INITIAL_CATEGORIES, INITIAL_PRODUCTS } from '../constants';
+import { Category, Product, StockEntry, DebtEntry } from '../types.ts';
+import { INITIAL_CATEGORIES, INITIAL_PRODUCTS } from '../constants.tsx';
 
 const KEYS = {
   CATEGORIES: 'stock_categories',

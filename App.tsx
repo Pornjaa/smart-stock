@@ -1,12 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
-import { storageService } from './services/storageService';
-import { ViewType, StockEntry, Product, Category, DebtEntry } from './types';
-import Dashboard from './components/Dashboard';
-import EntryView from './components/EntryView';
-import HistoryView from './components/HistoryView';
-import SettingsView from './components/SettingsView';
-import DebtView from './components/DebtView';
+import { storageService } from './services/storageService.ts';
+import { ViewType, StockEntry, Product, Category, DebtEntry } from './types.ts';
+import Dashboard from './components/Dashboard.tsx';
+import EntryView from './components/EntryView.tsx';
+import HistoryView from './components/HistoryView.tsx';
+import SettingsView from './components/SettingsView.tsx';
+import DebtView from './components/DebtView.tsx';
 import { LayoutDashboard, PlusCircle, ClipboardList, Settings, Warehouse, Users } from 'lucide-react';
 
 const App: React.FC = () => {
