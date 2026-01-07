@@ -1,5 +1,4 @@
-
-import { Category, Product } from './types';
+import { Category, Product } from './types.ts';
 
 export const INITIAL_CATEGORIES: Category[] = [
   { id: 'cat_soda', name: 'น้ำอัดลม', image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=400&q=80' },

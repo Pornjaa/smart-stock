@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Category, Product, StockEntry, DebtEntry } from '../types';
+import { Category, Product, StockEntry, DebtEntry } from '../types.ts';
 import { ChevronLeft, Plus, Minus, Check, Package2, UserMinus, Calculator } from 'lucide-react';
 
 interface EntryViewProps {
@@ -16,11 +15,9 @@ const EntryView: React.FC<EntryViewProps> = ({ categories, products, onAddEntry,
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
 
-  // Special States for Ice
   const [prevLeftover, setPrevLeftover] = useState<number>(0);
   const [iceCollected, setIceCollected] = useState<number>(0);
 
-  // Special States for Debt
   const [debtName, setDebtName] = useState('');
   const [debtDetail, setDebtDetail] = useState('');
   const [debtAmount, setDebtAmount] = useState<number>(0);
@@ -28,7 +25,7 @@ const EntryView: React.FC<EntryViewProps> = ({ categories, products, onAddEntry,
   const handleSelectCategory = (cat: Category) => {
     setSelectedCategory(cat);
     if (cat.id === 'cat_debt') {
-      setStep(3); // Go straight to debt form
+      setStep(3);
     } else {
       setStep(2);
     }
@@ -75,7 +72,6 @@ const EntryView: React.FC<EntryViewProps> = ({ categories, products, onAddEntry,
       onAddEntry(entry);
     }
     
-    // Reset
     setStep(1);
     setSelectedCategory(null);
     setSelectedProduct(null);

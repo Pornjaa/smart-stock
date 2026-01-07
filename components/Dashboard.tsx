@@ -1,7 +1,6 @@
-
 import React, { useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
-import { StockEntry, Category } from '../types';
+import { StockEntry, Category } from '../types.ts';
 
 interface DashboardProps {
   entries: StockEntry[];
@@ -37,7 +36,6 @@ const Dashboard: React.FC<DashboardProps> = ({ entries, categories }) => {
   }, [entries, categories]);
 
   const timelineData = useMemo(() => {
-    // Last 7 days
     const days = Array.from({ length: 7 }, (_, i) => {
       const d = new Date();
       d.setDate(d.getDate() - (6 - i));
@@ -55,7 +53,6 @@ const Dashboard: React.FC<DashboardProps> = ({ entries, categories }) => {
 
   return (
     <div className="space-y-6 animate-fadeIn">
-      {/* Stat Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { label: 'วันนี้', value: stats.totalToday, color: 'bg-blue-500' },
@@ -72,7 +69,6 @@ const Dashboard: React.FC<DashboardProps> = ({ entries, categories }) => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Weekly Chart */}
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
           <h3 className="text-lg font-semibold mb-6">ความเคลื่อนไหว 7 วันที่ผ่านมา</h3>
           <div className="h-64 w-full">
@@ -91,7 +87,6 @@ const Dashboard: React.FC<DashboardProps> = ({ entries, categories }) => {
           </div>
         </div>
 
-        {/* Category Distribution */}
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
           <h3 className="text-lg font-semibold mb-6">สัดส่วนตามหมวดหมู่</h3>
           <div className="h-64 w-full">

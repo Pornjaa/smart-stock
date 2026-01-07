@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { StockEntry, Category } from '../types';
+import { StockEntry, Category } from '../types.ts';
 import { Calendar, Search, Info } from 'lucide-react';
 
 interface HistoryViewProps {

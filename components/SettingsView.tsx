@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
-import { Category, Product } from '../types';
-import { storageService } from '../services/storageService';
+import { Category, Product } from '../types.ts';
+import { storageService } from '../services/storageService.ts';
 import { Plus, Trash2, Download, Upload, HardDrive, Package2, Tag, Image as ImageIcon, X } from 'lucide-react';
 
 interface SettingsViewProps {
@@ -28,13 +27,11 @@ const SettingsView: React.FC<SettingsViewProps> = ({ categories, products, onUpd
   const [showAddForm, setShowAddForm] = useState(false);
   const [showAddCatForm, setShowAddCatForm] = useState(false);
   
-  // Product Form State
   const [newName, setNewName] = useState('');
   const [newPrice, setNewPrice] = useState('');
   const [newUnit, setNewUnit] = useState('ขวด');
   const [newCatId, setNewCatId] = useState('');
 
-  // Category Form State
   const [newCatName, setNewCatName] = useState('');
   const [newCatImage, setNewCatImage] = useState(PRESET_IMAGES[0].url);
 
@@ -278,8 +275,6 @@ const SettingsView: React.FC<SettingsViewProps> = ({ categories, products, onUpd
                 </div>
                 <p className="font-bold text-slate-800 text-lg">{cat.name}</p>
                 <div className="mt-2 text-[10px] font-black uppercase tracking-widest text-emerald-500 bg-emerald-50 inline-block px-3 py-1 rounded-full">Category</div>
-                
-                {/* ปุ่มลบ (จะแสดงเมื่อเอาเมาส์มาวาง) */}
                 <button 
                   onClick={() => handleDeleteCategory(cat.id)}
                   className="absolute top-6 right-6 p-2.5 bg-white/90 text-rose-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-all shadow-xl hover:bg-rose-500 hover:text-white"

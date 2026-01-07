@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { DebtEntry } from '../types';
+import { DebtEntry } from '../types.ts';
 import { UserMinus, Trash2, Calendar, Banknote } from 'lucide-react';
 
 interface DebtViewProps {
