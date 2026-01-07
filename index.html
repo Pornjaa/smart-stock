@@ -23,6 +23,23 @@
             align-items: center;
             justify-content: center;
             background: #f8fafc;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .error-display {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+            padding: 1rem;
+            border-radius: 12px;
+            color: #b91c1c;
+            z-index: 9999;
+            font-size: 12px;
+            white-space: pre-wrap;
         }
     </style>
     <script type="importmap">
@@ -40,12 +57,25 @@
 </script>
 </head>
 <body>
+    <div id="error-box" class="error-display"></div>
     <div id="root">
         <div class="loading-screen">
             <div style="width: 40px; height: 40px; border: 4px solid #e2e8f0; border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+            <p style="color: #64748b; font-size: 14px;">กำลังเปิดระบบ...</p>
             <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
         </div>
     </div>
+    <script>
+        // ดักจับ Error เผื่อในกรณีที่แอปโหลดไม่ขึ้น จะได้รู้สาเหตุ
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            const errorBox = document.getElementById('error-box');
+            if (errorBox) {
+                errorBox.style.display = 'block';
+                errorBox.textContent = 'เกิดข้อผิดพลาดในการโหลดระบบ: ' + msg + '\nที่: ' + url + ':' + lineNo;
+            }
+            return false;
+        };
+    </script>
     <script type="module" src="index.tsx"></script>
 </body>
 </html>

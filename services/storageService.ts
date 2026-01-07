@@ -10,22 +10,34 @@ const KEYS = {
 
 export const storageService = {
   getCategories: (): Category[] => {
-    const data = localStorage.getItem(KEYS.CATEGORIES);
-    return data ? JSON.parse(data) : INITIAL_CATEGORIES;
+    try {
+      const data = localStorage.getItem(KEYS.CATEGORIES);
+      return data ? JSON.parse(data) : INITIAL_CATEGORIES;
+    } catch (e) {
+      return INITIAL_CATEGORIES;
+    }
   },
   saveCategories: (data: Category[]) => {
     localStorage.setItem(KEYS.CATEGORIES, JSON.stringify(data));
   },
   getProducts: (): Product[] => {
-    const data = localStorage.getItem(KEYS.PRODUCTS);
-    return data ? JSON.parse(data) : INITIAL_PRODUCTS;
+    try {
+      const data = localStorage.getItem(KEYS.PRODUCTS);
+      return data ? JSON.parse(data) : INITIAL_PRODUCTS;
+    } catch (e) {
+      return INITIAL_PRODUCTS;
+    }
   },
   saveProducts: (data: Product[]) => {
     localStorage.setItem(KEYS.PRODUCTS, JSON.stringify(data));
   },
   getEntries: (): StockEntry[] => {
-    const data = localStorage.getItem(KEYS.ENTRIES);
-    return data ? JSON.parse(data) : [];
+    try {
+      const data = localStorage.getItem(KEYS.ENTRIES);
+      return data ? JSON.parse(data) : [];
+    } catch (e) {
+      return [];
+    }
   },
   saveEntries: (data: StockEntry[]) => {
     localStorage.setItem(KEYS.ENTRIES, JSON.stringify(data));
@@ -37,8 +49,12 @@ export const storageService = {
     return updated;
   },
   getDebts: (): DebtEntry[] => {
-    const data = localStorage.getItem(KEYS.DEBTS);
-    return data ? JSON.parse(data) : [];
+    try {
+      const data = localStorage.getItem(KEYS.DEBTS);
+      return data ? JSON.parse(data) : [];
+    } catch (e) {
+      return [];
+    }
   },
   saveDebts: (data: DebtEntry[]) => {
     localStorage.setItem(KEYS.DEBTS, JSON.stringify(data));
@@ -51,10 +67,17 @@ export const storageService = {
   },
   getStorageStats: () => {
     let totalSize = 0;
-    for (const key in localStorage) {
-      if (localStorage.hasOwnProperty(key)) {
-        totalSize += (localStorage[key].length + key.length) * 2; 
+    try {
+      for (const key in localStorage) {
+        if (Object.prototype.hasOwnProperty.call(localStorage, key)) {
+          const item = localStorage.getItem(key);
+          if (item) {
+            totalSize += (item.length + key.length) * 2; 
+          }
+        }
       }
+    } catch (e) {
+      console.warn("Could not calculate storage size", e);
     }
     const sizeInMB = (totalSize / (1024 * 1024)).toFixed(2);
     const limitMB = 5; 
